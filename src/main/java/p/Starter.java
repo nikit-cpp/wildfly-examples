@@ -17,7 +17,7 @@ import java.util.concurrent.Executor;
 /**
  * Created by Nikita on 11.11.2015.
  */
-@Path("widgets")
+@Path("/")
 @Stateless
 public class Starter {
 

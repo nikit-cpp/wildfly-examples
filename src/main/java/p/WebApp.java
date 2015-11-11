@@ -6,6 +6,6 @@ import javax.ws.rs.core.Application;
 /**
  * Created by Nikita on 11.11.2015.
  */
-@ApplicationPath("mobile")
+@ApplicationPath("/")
 public class WebApp extends Application {
 }
