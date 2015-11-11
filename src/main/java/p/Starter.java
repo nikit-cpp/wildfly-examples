@@ -32,7 +32,13 @@ public class Starter {
         Executor executor = (Executor) initialContext.lookup("java:module/Executor2");
 
         for(int i =0; i<1000; ++i) {
-            executor.execute(() -> logger.warn("Ololo {}", Thread.currentThread()));
+            final int j = i;
+            executor.execute(
+                    () -> {
+                        logger.info("iteration {}", j);
+                        logger.warn("Ololo {}", Thread.currentThread());
+                    }
+            );
         }
 
         return "Ok";
