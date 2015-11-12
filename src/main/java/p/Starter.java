@@ -21,7 +21,7 @@ import java.util.concurrent.Executor;
 @Stateless
 public class Starter {
 
-    @EJB
+    @EJB(lookup = "java:jboss/ee/concurrency/executor/nikita_2_executor")
     private Executor executor;
 
     Logger logger = LoggerFactory.getLogger(Starter.class);
@@ -29,7 +29,7 @@ public class Starter {
     @GET
     public String init() throws NamingException {
         InitialContext initialContext = new InitialContext();
-        Executor executor = (Executor) initialContext.lookup("java:module/Executor2");
+        //Executor executor = (Executor) initialContext.lookup("java:module/Executor2");
 
         for(int i =0; i<1000; ++i) {
             final int j = i;
