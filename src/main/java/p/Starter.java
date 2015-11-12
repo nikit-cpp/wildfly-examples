@@ -3,15 +3,13 @@ package p;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.ejb.Singleton;
-import javax.ejb.Startup;
 import javax.ejb.Stateless;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import java.util.concurrent.Executor;
 
 /**
@@ -22,20 +20,27 @@ import java.util.concurrent.Executor;
 public class Starter {
 
     @EJB(lookup = "java:jboss/ee/concurrency/executor/nikita_2_executor")
-    private Executor executor;
+    private Executor syncExecutor;
+
+    @EJB(lookup = "java:module/Executor2")
+    private Executor asyncExecutor;
 
     Logger logger = LoggerFactory.getLogger(Starter.class);
 
+    @Path("async")
+    @Produces("text/plain")
     @GET
-    public String init() throws NamingException {
-        InitialContext initialContext = new InitialContext();
-        //Executor executor = (Executor) initialContext.lookup("java:module/Executor2");
-
-        for(int i =0; i<1000; ++i) {
+    public String async() throws NamingException {
+        for(int i =0; i<30; ++i) {
             final int j = i;
-            executor.execute(
+            asyncExecutor.execute(
                     () -> {
-                        logger.info("iteration {}", j);
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        logger.info("async iteration {}", j);
                         logger.warn("Ololo {}", Thread.currentThread());
                     }
             );
@@ -43,4 +48,27 @@ public class Starter {
 
         return "Ok";
     }
+
+    @Path("sync")
+    @Produces("text/plain")
+    @GET
+    public String sync() throws NamingException {
+        for(int i =0; i<30; ++i) {
+            final int j = i;
+            syncExecutor.execute(
+                    () -> {
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        logger.info("sync iteration {}", j);
+                        logger.warn("Ololo {}", Thread.currentThread());
+                    }
+            );
+        }
+
+        return "Ok";
+    }
+
 }

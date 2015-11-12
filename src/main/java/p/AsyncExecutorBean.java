@@ -10,7 +10,7 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.Executor;
 
 @Stateless(name="Executor2")
-public class ExecutorBean implements Executor {
+public class AsyncExecutorBean implements Executor {
 
     @Asynchronous
     @Override
