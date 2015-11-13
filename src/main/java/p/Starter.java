@@ -2,6 +2,8 @@ package p;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.enterprise.concurrent.ManagedExecutorService;
@@ -28,7 +30,7 @@ public class Starter {
     private Executor asyncExecutor;
 
     @EJB(lookup = "java:jboss/ee/concurrency/executor/nikita_2_executor")
-    ManagedExecutorService syncExecutor;
+    private ManagedExecutorService syncExecutor;
 
     Logger logger = LoggerFactory.getLogger(Starter.class);
 
@@ -87,6 +89,10 @@ public class Starter {
         }
 
         return "Ok";
+    }
+
+    @PreDestroy
+    public void destroy(){
     }
 
 }

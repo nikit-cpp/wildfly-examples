@@ -11,13 +11,13 @@
                 </managed-thread-factories>
                 <managed-executor-services>
                     <managed-executor-service name="default" jndi-name="java:jboss/ee/concurrency/executor/default" context-service="default" hung-task-threshold="60000" core-threads="5" max-threads="25" keepalive-time="5000"/>
-добавить ->         <managed-executor-service name="nikita_2_executor" jndi-name="java:jboss/ee/concurrency/executor/nikita_2_executor" long-running-tasks="true" core-threads="10" max-threads="100" queue-length="3000"/>
+добавить ->         <managed-executor-service name="nikita_2_executor" jndi-name="java:jboss/ee/concurrency/executor/nikita_2_executor" long-running-tasks="true" core-threads="1000" max-threads="1000" queue-length="3000"/>
 
 
 
 GET
-http://127.0.0.1:8080/wildfly-pooled-tasks-1.0/async/3000
-http://127.0.0.1:8080/wildfly-pooled-tasks-1.0/sync/3000
+http://127.0.0.1:8080/wildfly-pooled-tasks-1.0/async/4000
+http://127.0.0.1:8080/wildfly-pooled-tasks-1.0/sync/4000
 
 # это так можно мониторить только в standalone, в domain не получилось
 /subsystem=ejb3/thread-pool=default:read-attribute(name=current-thread-count)
