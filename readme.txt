@@ -17,3 +17,9 @@
 GET
 http://127.0.0.1:8080/fuck-1.0/async/3000
 http://127.0.0.1:8080/fuck-1.0/sync/3000
+
+
+/subsystem=ejb3/thread-pool=default:read-attribute(name=current-thread-count)
+/subsystem=ejb3/thread-pool=nikita_pool:read-attribute(name=current-thread-count)
+/subsystem=ejb3/thread-pool=default:read-attribute(name=queue-size)
+/subsystem=ejb3/thread-pool=default:read-resource(include-runtime=true)
