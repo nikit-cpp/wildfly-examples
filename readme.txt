@@ -15,5 +15,5 @@
 
 
 GET
-http://127.0.0.1:8080/fuck-1.0/async
-http://127.0.0.1:8080/fuck-1.0/sync
+http://127.0.0.1:8080/fuck-1.0/async/3000
+http://127.0.0.1:8080/fuck-1.0/sync/3000

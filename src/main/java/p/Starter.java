@@ -6,8 +6,10 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.enterprise.concurrent.ManagedExecutorService;
 import javax.naming.NamingException;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,11 +32,12 @@ public class Starter {
 
     Logger logger = LoggerFactory.getLogger(Starter.class);
 
-    @Path("async")
+    @Path("async/{num}")
     @Produces("text/plain")
     @GET
-    public String async() throws NamingException {
-        for(int i =0; i<30; ++i) {
+    public String async(@PathParam("num") int num) {
+
+        for(int i =0; i<num; ++i) {
             final int j = i;
             asyncExecutor.execute(
                     () -> {
@@ -52,13 +55,13 @@ public class Starter {
         return "Ok";
     }
 
-    @Path("sync")
+    @Path("sync/{num}")
     @Produces("text/plain")
     @GET
-    public String sync() throws NamingException, InterruptedException, ExecutionException {
+    public String sync(@PathParam("num") int num) throws InterruptedException, ExecutionException {
         List<Callable<Void>> callables = new ArrayList<>();
 
-        for(int i =0; i<2000; ++i) {
+        for(int i =0; i<num; ++i) {
             final int j = i;
             callables.add(() -> {
                 logger.info("sync iteration {}", j);
