@@ -44,10 +44,10 @@ public class Starter {
                         try {
                             Thread.sleep(1000);
                         } catch (InterruptedException e) {
-                            e.printStackTrace();
+                            logger.warn(e.getMessage());
                         }
                         logger.info("async iteration {}", j);
-                        logger.warn("Ololo {}", Thread.currentThread());
+                        logger.info("Ololo {}", Thread.currentThread());
                     }
             );
         }
@@ -58,23 +58,32 @@ public class Starter {
     @Path("sync/{num}")
     @Produces("text/plain")
     @GET
-    public String sync(@PathParam("num") int num) throws InterruptedException, ExecutionException {
+    public String sync(@PathParam("num") int num) {
         List<Callable<Void>> callables = new ArrayList<>();
 
         for(int i =0; i<num; ++i) {
             final int j = i;
             callables.add(() -> {
+                Thread.sleep(1000);
                 logger.info("sync iteration {}", j);
-                logger.warn("Ololo {}", Thread.currentThread());
+                logger.info("Ololo {}", Thread.currentThread());
                 return null;
             });
         }
 
-        List<Future<Void>> taskResults = syncExecutor.invokeAll(callables);
+        List<Future<Void>> taskResults;
 
-        for(int i =0; i<taskResults.size(); ++i) {
-            Future<Void> future = taskResults.get(i);
-            future.get();
+        try {
+            taskResults = syncExecutor.invokeAll(callables);
+            for (int i =0; i<taskResults.size(); ++i) {
+                Future<Void> future = taskResults.get(i);
+                future.get();
+            }
+
+        } catch (InterruptedException e) {
+            logger.warn(e.getMessage());
+        } catch (ExecutionException e) {
+            logger.warn(e.getMessage());
         }
 
         return "Ok";
