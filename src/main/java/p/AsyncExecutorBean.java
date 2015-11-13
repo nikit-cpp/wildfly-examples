@@ -4,9 +4,7 @@ package p;
  * Created by Nikita on 11.11.2015.
  */
 import javax.ejb.Asynchronous;
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import java.util.concurrent.Callable;
 import java.util.concurrent.Executor;
 
 @Stateless(name="Executor2")
