@@ -7,8 +7,6 @@ import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.enterprise.concurrent.ManagedExecutorService;
-import javax.naming.NamingException;
-import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -26,11 +24,9 @@ import java.util.concurrent.Future;
 @Path("/")
 @Stateless
 public class Starter {
-    @EJB(lookup = "java:module/Executor2")
-    private Executor asyncExecutor;
 
     @EJB(lookup = "java:jboss/ee/concurrency/executor/nikita_2_executor")
-    private ManagedExecutorService syncExecutor;
+    private ManagedExecutorService customExecutor;
 
     Logger logger = LoggerFactory.getLogger(Starter.class);
 
@@ -41,7 +37,7 @@ public class Starter {
 
         for(int i =0; i<num; ++i) {
             final int j = i;
-            asyncExecutor.execute(
+            customExecutor.execute(
                     () -> {
                         try {
                             Thread.sleep(1000);
@@ -49,7 +45,7 @@ public class Starter {
                             logger.warn(e.getMessage());
                         }
                         logger.info("async iteration {}", j);
-                        logger.info("Ololo {}", Thread.currentThread());
+                        logger.info("async {}", Thread.currentThread());
                     }
             );
         }
@@ -68,7 +64,7 @@ public class Starter {
             callables.add(() -> {
                 Thread.sleep(1000);
                 logger.info("sync iteration {}", j);
-                logger.info("Ololo {}", Thread.currentThread());
+                logger.info("sync {}", Thread.currentThread());
                 return null;
             });
         }
@@ -76,15 +72,13 @@ public class Starter {
         List<Future<Void>> taskResults;
 
         try {
-            taskResults = syncExecutor.invokeAll(callables);
+            taskResults = customExecutor.invokeAll(callables);
             for (int i =0; i<taskResults.size(); ++i) {
                 Future<Void> future = taskResults.get(i);
                 future.get();
             }
 
-        } catch (InterruptedException e) {
-            logger.warn(e.getMessage());
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             logger.warn(e.getMessage());
         }
 
