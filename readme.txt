@@ -1,4 +1,5 @@
-Установка
+Установка в standalone - очевидно,
+в domain - не очевидно, надо добавить в тот профиль, с которым работает сервер-группа, в которую будет задеплоен этот варик
         <subsystem xmlns="urn:jboss:domain:ee:2.0">
             <spec-descriptor-property-replacement>false</spec-descriptor-property-replacement>
             <concurrent>
@@ -18,7 +19,7 @@ GET
 http://127.0.0.1:8080/fuck-1.0/async/3000
 http://127.0.0.1:8080/fuck-1.0/sync/3000
 
-
+# это так можно мониторить только в standalone, в domain не получилось
 /subsystem=ejb3/thread-pool=default:read-attribute(name=current-thread-count)
 /subsystem=ejb3/thread-pool=nikita_pool:read-attribute(name=current-thread-count)
 /subsystem=ejb3/thread-pool=default:read-attribute(name=queue-size)
