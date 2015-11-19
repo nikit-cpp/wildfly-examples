@@ -14,7 +14,6 @@
 добавить ->         <managed-executor-service name="nikita_2_executor" jndi-name="java:jboss/ee/concurrency/executor/nikita_2_executor" long-running-tasks="true" core-threads="1000" max-threads="1000" queue-length="3000"/>
 
 
-
 GET
 http://127.0.0.1:8080/wildfly-pooled-tasks-1.0/async/4000
 http://127.0.0.1:8080/wildfly-pooled-tasks-1.0/sync/4000
