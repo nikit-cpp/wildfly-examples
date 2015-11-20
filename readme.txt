@@ -15,8 +15,8 @@
 
 
 GET
-http://127.0.0.1:8080/wildfly-examples-1.0/async/4000
-http://127.0.0.1:8080/wildfly-examples-1.0/sync/4000
+http://127.0.0.1:8080/wildfly-examples-1.0/rest/async/4000
+http://127.0.0.1:8080/wildfly-examples-1.0/rest/sync/4000
 
 # это так можно мониторить только в standalone, в domain не получилось
 /subsystem=ejb3/thread-pool=default:read-attribute(name=current-thread-count)
@@ -25,4 +25,4 @@ http://127.0.0.1:8080/wildfly-examples-1.0/sync/4000
 /subsystem=ejb3/thread-pool=default:read-resource(include-runtime=true)
 
 # Посмотреть .html
-http://0.0.0.0:8080/wildfly-examples-1.0/service/index.html
+http://0.0.0.0:8080/wildfly-examples-1.0/www/index.html
