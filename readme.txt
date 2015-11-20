@@ -29,11 +29,13 @@ http://0.0.0.0:8080/wildfly-examples-1.0/www/index.html
 
 
 Добавить почту
-		<mail-session name="mySession" jndi-name="java:/MyOtherMail">
+1)		<mail-session name="mySession" jndi-name="java:/MyOtherMail">
 			<smtp-server outbound-socket-binding-ref="mail-smtp-yandex" ssl="true" username="login.on.yandex" password="password.on.yandex"/>
 		</mail-session>
 
-
-        <outbound-socket-binding name="mail-smtp-yandex">
+2)      <outbound-socket-binding name="mail-smtp-yandex">
             <remote-destination host="smtp.yandex.ru" port="465"/>
         </outbound-socket-binding>
+
+Установить кодировку для jsf:
+<servlet-container name="default" default-encoding="UTF-8">

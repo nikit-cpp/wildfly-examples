@@ -107,7 +107,7 @@ public class Email implements Serializable {
         Address toAddress = new InternetAddress(to);
         message.addRecipient(Message.RecipientType.TO, toAddress);
         message.setSubject(subject);
-        message.setContent(body, "text/plain");
+        message.setContent(body, "text/plain; charset=utf-8");
         Transport.send(message);
     }
 }
