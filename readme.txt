@@ -39,3 +39,11 @@ http://0.0.0.0:8080/wildfly-examples-1.0/www/index.html
 
 Установить кодировку для jsf:
 <servlet-container name="default" default-encoding="UTF-8">
+
+Cargo-плагин
+============
+https://github.com/bmuschko/gradle-cargo-plugin/issues/24 http://habrahabr.ru/sandbox/69926/  https://github.com/bmuschko/gradle-cargo-plugin
+
+gradle cargoDeployRemote
+gradle cargoUndeployRemote
+gradle cargoRedeployRemote
