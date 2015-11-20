@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executor;
 import java.util.concurrent.Future;
 
 /**
@@ -23,12 +22,12 @@ import java.util.concurrent.Future;
  */
 @Path("/")
 @Stateless
-public class Starter {
+public class Controller {
 
     @EJB(lookup = "java:jboss/ee/concurrency/executor/nikita_2_executor")
     private ManagedExecutorService customExecutor;
 
-    Logger logger = LoggerFactory.getLogger(Starter.class);
+    Logger logger = LoggerFactory.getLogger(Controller.class);
 
     @Path("async/{num}")
     @Produces("text/plain")
