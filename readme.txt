@@ -47,3 +47,5 @@ https://github.com/bmuschko/gradle-cargo-plugin/issues/24 http://habrahabr.ru/sa
 gradle cargoDeployRemote
 gradle cargoUndeployRemote
 gradle cargoRedeployRemote
+
+bower install
