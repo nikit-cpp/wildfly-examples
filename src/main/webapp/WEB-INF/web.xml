@@ -13,4 +13,8 @@
         <param-value>/www</param-value>
     </context-param>
 
+    <error-page>
+        <exception-type>javax.servlet.ServletException</exception-type>
+        <location>/index.html</location>
+    </error-page>
 </web-app>
