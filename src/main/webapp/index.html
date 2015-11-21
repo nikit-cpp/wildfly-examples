@@ -1,19 +1,29 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <meta charset="utf-8">
-    <title>React Tutorial</title>
-    <!-- Not present in the tutorial. Just for basic styling. -->
-    <script src="lib/react/react.js"></script>
-    <script src="lib/react/react-dom.js"></script>
-    <script src="lib/babel/browser.js"></script>
-    <script src="lib/jquery/dist/jquery.min.js"></script>
-</head>
-<body>
-<a href="mail.jsf">Послать почту</a>
-<div id="content"></div>
-<!--<script type="text/babel" src="scripts/example.js"></script>-->
-<script type="text/babel" src="scripts/my.js">
-</script>
-</body>
+    <title>React Router Active Component</title>
+    <script src="http://fb.me/react-0.13.1.js"></script>
+    <script src="http://fb.me/JSXTransformer-0.13.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-router/0.13.2/ReactRouter.js"></script>
+	<script src="https://raw.githubusercontent.com/insin/react-router-active-component/34d8bab0a30a41b8b4cffae2935e59496d3aaf41/dist/react-router-active-component.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    <style>
+    footer {
+      text-align: center;
+    }
+    /* Making sure that links don't get the active className. */
+    a.active {
+      background-color: #f00;
+    }
+    p.special {
+      background-color: #ffc;
+    }
+    </style>
+  </head>
+  <body>
+    <script type="text/jsx;harmony=true" src="scripts/app.jsx"></script>
+	<div id="content"></div>
+  </body>
 </html>
