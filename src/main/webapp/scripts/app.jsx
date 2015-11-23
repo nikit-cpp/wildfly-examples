@@ -48,11 +48,8 @@ var Tasks = React.createClass({
       <div className="col-md-3">
         <ul className="nav nav-pills nav-stacked">
           <NavItem to="e-mail-react">Почта React</NavItem>
-          <NavItem to="e-mail-jsf">Почта jsf</NavItem>
+          <li><a href="mail.jsf">Послать почту jsf</a></li>
           <NavItem to="hibernate">Hibernate</NavItem>
-          <li>
-            <p className="navbar-text"><code>&lt;li&gt;</code>s in this nav get the <code>active</code> class</p>
-          </li>
         </ul>
       </div>
       <div className="col-md-9">
@@ -81,13 +78,20 @@ var Email = React.createClass({
   }
 })
 
-var EmailJsf = React.createClass({
-  render() {
-    return <div className="Email">
-      <a href="mail.jsf">Послать почту jsf</a>
-    </div>
+
+var EmailForm = React.createClass({
+  render: function() {
+    return (
+        <form className="emailForm">
+          <input type="text" placeholder="Your name" />
+          <input type="text" placeholder="Say something..." />
+          <input type="text" placeholder="Say something..." />
+          <input type="text" placeholder="Say something..." />
+          <input type="submit" value="Post" />
+        </form>
+    );
   }
-})
+});
 
 var MyTasks = React.createClass({
   render() {
@@ -103,7 +107,6 @@ var routes = <Route handler={App}>
     <DefaultRoute handler={TasksDashboard}/>
     <Route name="e-mail-react" path="e-mail-react" handler={Email}/>
     <Route name="hibernate" path="hibernate" handler={MyTasks}/>
-    <Route name="e-mail-jsf" path="e-mail-jsf" handler={EmailJsf}/>
   </Route>
 </Route>
 
