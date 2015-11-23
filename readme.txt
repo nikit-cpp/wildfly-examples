@@ -51,3 +51,5 @@ gradle cargoRedeployRemote
 bower install
 
 curl -H "Content-Type: application/json" -X POST -d '{"from":"i.familia1@yandex.ru","to":"nikit-xxx@mail.ru", "subject":"Сабж", "body":"Боди"}' http://127.0.0.1:8080/wildfly-examples-1.0/rest/mail/send
+
+curl http://127.0.0.1:8080/wildfly-examples-1.0/rest/mail/getmail

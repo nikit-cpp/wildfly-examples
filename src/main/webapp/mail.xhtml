@@ -42,18 +42,22 @@
             <h:inputText id="to" value="#{email.to}"
                required="true" size="20"
                />
+             <br/>
 			From:
             <h:inputText id="from" value="#{email.from}"
                required="true" size="20"
                />
+             <br/>
             Subject:
             <h:inputText id="subject" value="#{email.subject}"
                required="true" size="20"
                />
+             <br/>
             Body:
             <h:inputTextarea id="body" value="#{email.body}"
                required="true" size="200"
                />
+             <br/>
             <h:commandButton id="sendButton" value="Send"
                action="#{email.send}"/>
          </div>
