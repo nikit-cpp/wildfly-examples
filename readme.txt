@@ -37,7 +37,7 @@ http://0.0.0.0:8080/wildfly-examples-1.0/www/index.html
             <remote-destination host="smtp.yandex.ru" port="465"/>
         </outbound-socket-binding>
 
-Установить кодировку для jsf:
+Установить кодировку для jsf (https://issues.jboss.org/browse/WFLY-2533):
 <servlet-container name="default" default-encoding="UTF-8">
 
 Cargo-плагин
