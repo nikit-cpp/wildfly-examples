@@ -16,7 +16,7 @@ var App = React.createClass({
             <NavItem to="dashboard">Главная</NavItem>
             <NavItem to="tasks">Почта</NavItem>
             <li>
-              <p className="navbar-text"><span className="glyphicon glyphicon-user"></span>Вся мощь Wildfly</p>
+              <p className="navbar-text"><span className="glyphicon glyphicon-cog"></span>Вся мощь Wildfly</p>
             </li>
           </ul>
         </div>
