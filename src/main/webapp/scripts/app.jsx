@@ -70,26 +70,30 @@ var TasksDashboard = React.createClass({
   }
 })
 
-var Email = React.createClass({
-  render() {
-    return <div className="Email">
-      <h2>Почта</h2>
-    </div>
-  }
-})
-
-
 var EmailForm = React.createClass({
   render: function() {
     return (
-        <form className="emailForm">
-          <input type="text" placeholder="Your name" />
-          <input type="text" placeholder="Say something..." />
-          <input type="text" placeholder="Say something..." />
-          <input type="text" placeholder="Say something..." />
+        <form className="emailForm" onSubmit={this.onSubmit}>
+          <input type="text" placeholder="to" ref="toRef" /><br/>
+          <input type="text" placeholder="from" ref="fromRef"/><br/>
+          <input type="text" placeholder="subject" ref="subjectRef" /><br/>
+          <textarea placeholder="Say something..." ref="bodyRef" /><br/>
           <input type="submit" value="Post" />
         </form>
     );
+  },
+
+  onSubmit: function(e) {
+    e.preventDefault()
+
+    // check if form is valid
+    var validation = this.refs.form.value().validation
+    if (ReactForms.validation.isFailure(validation)) {
+      console.log('invalid form')
+      return
+    }
+
+    alert('form submitted!')
   }
 });
 
@@ -105,7 +109,7 @@ var routes = <Route handler={App}>
   <DefaultRoute name="dashboard" handler={Dashboard}/>
   <Route name="tasks" handler={Tasks}>
     <DefaultRoute handler={TasksDashboard}/>
-    <Route name="e-mail-react" path="e-mail-react" handler={Email}/>
+    <Route name="e-mail-react" path="e-mail-react" handler={EmailForm}/>
     <Route name="hibernate" path="hibernate" handler={MyTasks}/>
   </Route>
 </Route>
