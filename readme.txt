@@ -48,6 +48,10 @@ gradle cargoDeployRemote
 gradle cargoUndeployRemote
 gradle cargoRedeployRemote
 
+Используем с выбором окружений:
+===============================
+gradle clean build cargoRedeployRemote -PdeployEnv=NIKITA_LOCAL_WORK
+
 bower install ololo#1.2.3
 npm install babel-core@5.8.34
 

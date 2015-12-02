@@ -31,12 +31,18 @@ dependencies {
 
 [ compileJava, compileTestJava ]*.options*.encoding = 'UTF-8'
 
+def boxes = [
+        'NIKITA_LOCAL_HOME': [host:'127.0.0.1', username : 'nikita', password : '1488'],
+        'NIKITA_LOCAL_WORK': [host:'127.0.0.1', username : 'nikita', password : 'qwerty']
+]
+
+
 // cargo #3
 cargo {
     containerId = 'wildfly8x'
     remote {
-        hostname = '127.0.0.1'
-        username = 'nikita'
-        password = '1488'
+        hostname = boxes[deployEnv].host
+        username = boxes[deployEnv].username
+        password = boxes[deployEnv].password
     }
 }
