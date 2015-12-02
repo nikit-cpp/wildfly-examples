@@ -60,3 +60,7 @@ curl -H "Content-Type: application/json" -X POST -d '{"from":"i.familia1@yandex.
 curl http://127.0.0.1:8080/wildfly-examples-1.0/rest/mail/getmail
 
 curl -v -X POST -H 'Accept: application/json' -F 'name=Form Upload Example' -F 'attachment=@C:\Users\Altarix\Desktop\new_email.sql' http://127.0.0.1:8080/wildfly-examples-1.0/rest/upload
+
+работает с имплементацией:
+==========================
+curl -X POST -H 'Accept: application/json' -F 'name=Form Upload Example' -F 'attachment=@C:\Users\Altarix\Desktop\new_email.sql' http://127.0.0.1:8080/wildfly-examples-1.0/rest/upload2

@@ -5,7 +5,6 @@ import multipart.MultipartRequestMap;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -22,6 +21,7 @@ import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
+import org.jboss.resteasy.plugins.providers.multipart.*;
 
 /**
  * Created by Nikita on 11.11.2015.
@@ -132,5 +132,17 @@ public class Controller {
     public static class MultipartFormResponse {
         public String name;
         public int length;
+    }
+
+    @POST
+    @Path("upload2")
+    //@Consumes("multipart/mixed")
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    public void put(MultipartInput input) throws IOException {
+        for (InputPart part : input.getParts()){
+            String s = part.getBodyAsString();
+            logger.info("part={}", s);
+        }
+        input.close();
     }
 }
