@@ -17,4 +17,19 @@
         <exception-type>javax.servlet.ServletException</exception-type>
         <location>/index.html</location>
     </error-page>
+
+    <!--
+    <servlet>
+        <servlet-name>javax.ws.rs.core.Application</servlet-name>
+        <multipart-config>
+            <location>/tmp</location>
+            <max-file-size>35000000</max-file-size>
+            <max-request-size>218018841</max-request-size>
+            <file-size-threshold>0</file-size-threshold>
+        </multipart-config>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>javax.ws.rs.core.Application</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>-->
 </web-app>
